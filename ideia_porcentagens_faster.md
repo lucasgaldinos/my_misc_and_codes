@@ -1,0 +1,1 @@
+Descobrir como utilizar as porcentagens de carga ocupada dentro do faster -> se um caminhão tem uma carga não totalmente ocupada, e o total das porcentagens está muito discrepante, talvez seja possível melhorar o resultado de otimos locais/globais e ajustar a perturbação utilizada também

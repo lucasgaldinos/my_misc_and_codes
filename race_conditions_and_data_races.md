@@ -1,0 +1,7 @@
+[race conditions vs data race](https://blog.regehr.org/archives/490)
+[race condition brevitaz](https://www.brevitaz.com/race-condition-java-concurrency-2/)
+[data race vs race condition stack overflow](https://stackoverflow.com/questions/11276259/are-data-races-and-race-condition-actually-the-same-thing-in-context-of-conc/18049303#18049303)
+[Fix your damned data races](https://blog.mozilla.org/nnethercote/2015/02/24/fix-your-damned-data-races/)
+[Thread sanitizing](https://blog.mozilla.org/nfroyd/2015/02/20/finding-races-in-firefox-with-threadsanitizer/)
+[Find data races](https://blog.mozilla.org/nfroyd/2015/02/20/finding-races-in-firefox-with-threadsanitizer/)
+[sanitizers by google - see wiki](https://github.com/google/sanitizers)

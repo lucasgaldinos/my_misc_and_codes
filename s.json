@@ -1,0 +1,998 @@
+[
+  {
+    "metric_name": "Complete Goods",
+    "standard_name": "COMPLETE_GOODS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(TYPE == 'CG' and ACCOUNT_DESC == 'Sales - Complete Goods - External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 0
+  },
+  {
+    "metric_name": "Service Parts ",
+    "standard_name": "SERVICE_PARTS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(TYPE == 'PRT_SRV' and ACCOUNT_DESC == 'Sales - Parts -External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 1
+  },
+  {
+    "metric_name": "ISG",
+    "standard_name": "ISG",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(TYPE == 'CG_ISG' and ACCOUNT_DESC == 'Sales - Complete Goods - External') or (TYPE == 'PRT_ISG' and ACCOUNT_DESC == 'Sales - Parts -External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 2
+  },
+  {
+    "metric_name": "Freight Sales/MDF",
+    "standard_name": "FREIGHT_SALES_MDF",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Sales - Parts Freight - External') or (ACCOUNT_DESC == 'Sales - Complete Goods Freight - External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 3
+  },
+  {
+    "metric_name": "Recurring Revenue",
+    "standard_name": "RECURRING_REVENUE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Sales - Recurring Revenue - Dealer - External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 4
+  },
+  {
+    "metric_name": "Gross Sales",
+    "standard_name": "GROSS_SALES",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "COMPLETE_GOODS",
+        "SERVICE_PARTS",
+        "ISG",
+        "FREIGHT_SALES_MDF",
+        "RECURRING_REVENUE"
+      ]
+    },
+    "UNIQUE_ID": 5
+  },
+  {
+    "metric_name": "Discounts",
+    "standard_name": "DISCOUNTS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 in ('Discounts','Waived Interest'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 6
+  },
+  {
+    "metric_name": "Warranty",
+    "standard_name": "WARRANTY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Warranty and Allowance Expense', 'Warranty and Allowance Accrual'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 7
+  },
+  {
+    "metric_name": "PIP",
+    "standard_name": "PIP",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'PIP Expense')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 8
+  },
+  {
+    "metric_name": "Net Sales",
+    "standard_name": "NET_SALES",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "COMPLETE_GOODS",
+        "SERVICE_PARTS",
+        "ISG",
+        "FREIGHT_SALES_MDF",
+        "RECURRING_REVENUE",
+        "DISCOUNTS",
+        "WARRANTY",
+        "PIP"
+      ]
+    },
+    "UNIQUE_ID": 9
+  },
+  {
+    "metric_name": "Direct Material",
+    "standard_name": "DIRECT_MATERIAL",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L3 == '[4] SCOS')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 10
+  },
+  {
+    "metric_name": "Direct Overhead",
+    "standard_name": "DIRECT_OVERHEAD",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 11
+  },
+  {
+    "metric_name": "Period Overhead",
+    "standard_name": "PERIOD_OVERHEAD",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 12
+  },
+  {
+    "metric_name": "Parts Standard Cost of Sales",
+    "standard_name": "PARTS_STANDARD_COST_OF_SALES",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 13
+  },
+  {
+    "metric_name": "Other Std COS (JDISG Lease Reversal etc)",
+    "standard_name": "OTHER_STD_COS_JDISG_LEASE_REVERSAL_ETC",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 14
+  },
+  {
+    "metric_name": "Total Standard Cost of Sales",
+    "standard_name": "TOTAL_STANDARD_COST_OF_SALES",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "DIRECT_MATERIAL",
+        "DIRECT_OVERHEADPERIOD_OVERHEAD",
+        "PARTS_STANDARD_COST_OF_SALES",
+        "OTHER_STD_COS_JDISG_LEASE_REVERSAL_ETC"
+      ]
+    },
+    "UNIQUE_ID": 15
+  },
+  {
+    "metric_name": "Source Factory Spending",
+    "standard_name": "SOURCE_FACTORY_SPENDING",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Historical Depreciation COS', 'Historical Depreciation COS- Capitalized Interest', 'Overhead Spending', 'Amortization Of Software - Internal Use -COS') and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 16
+  },
+  {
+    "metric_name": "Source Factory OH Absorption",
+    "standard_name": "SOURCE_FACTORY_OH_ABSORPTION",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Overhead Absorption' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 17
+  },
+  {
+    "metric_name": "Source Factory PFIC",
+    "standard_name": "SOURCE_FACTORY_PFIC",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'PFIC' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 18
+  },
+  {
+    "metric_name": "Source Factory Material Variance",
+    "standard_name": "SOURCE_FACTORY_MATERIAL_VARIANCE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Direct Material Variance' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 19
+  },
+  {
+    "metric_name": "Source Factory Distribution",
+    "standard_name": "SOURCE_FACTORY_DISTRIBUTION",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Distribution Expenses' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 20
+  },
+  {
+    "metric_name": "Source Factory Freight",
+    "standard_name": "SOURCE_FACTORY_FREIGHT",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Freight Costs - Shipments To Customer' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 21
+  },
+  {
+    "metric_name": "Source Factory Inventory Adj/Obs",
+    "standard_name": "SOURCE_FACTORY_INVENTORY_ADJ_OBS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Surplus and Obsolete Inventory', 'Inventory Actualization', 'Inventory Adjustment') and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 22
+  },
+  {
+    "metric_name": "Source Factory Scrap",
+    "standard_name": "SOURCE_FACTORY_SCRAP",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Scrap Proceeds' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 23
+  },
+  {
+    "metric_name": "Source Factory R&D",
+    "standard_name": "SOURCE_FACTORY_RD",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'R&D')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 24
+  },
+  {
+    "metric_name": "Source Factory Other NCOS",
+    "standard_name": "SOURCE_FACTORY_OTHER_NCOS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Cost of Sales \\u2013 (Gain) Loss on Foreign Exchange', 'Cost of Goods Sold-FX-non-Hedging', 'Miscellaneous Charges and Credits - COS'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 25
+  },
+  {
+    "metric_name": "Source Factory Non0Standard COS",
+    "standard_name": "SOURCE_FACTORY_NON_STANDARD_COS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_SPENDING",
+        "SOURCE_FACTORY_OH_ABSORPTION",
+        "SOURCE_FACTORY_PFIC",
+        "SOURCE_FACTORY_MATERIAL_VARIANCE",
+        "SOURCE_FACTORY_DISTRIBUTION",
+        "SOURCE_FACTORY_FREIGHT",
+        "SOURCE_FACTORY_INVENTORY_ADJ_OBS",
+        "SOURCE_FACTORY_SCRAP",
+        "SOURCE_FACTORY_RD",
+        "SOURCE_FACTORY_OTHER_NCOS"
+      ]
+    },
+    "UNIQUE_ID": 26
+  },
+  {
+    "metric_name": "Allocated Spending",
+    "standard_name": "ALLOCATED_SPENDING",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Historical Depreciation COS- Capitalized Interest', 'Historical Depreciation COS', 'Overhead Spending', 'Amortization Of Software - Internal Use -COS', 'Amortization of Other Intangible Assets -COS')) and (UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 27
+  },
+  {
+    "metric_name": "Allocated OH Absorption",
+    "standard_name": "ALLOCATED_OH_ABSORPTION",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Overhead Absorption' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 28
+  },
+  {
+    "metric_name": "Allocated PFIC",
+    "standard_name": "ALLOCATED_PFIC",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'PFIC' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 29
+  },
+  {
+    "metric_name": "Allocated Material Variance",
+    "standard_name": "ALLOCATED_MATERIAL_VARIANCE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Direct Material Variance' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 30
+  },
+  {
+    "metric_name": "Allocated Distribution",
+    "standard_name": "ALLOCATED_DISTRIBUTION",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Distribution Expenses' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 31
+  },
+  {
+    "metric_name": "Allocated Freight",
+    "standard_name": "ALLOCATED_FREIGHT",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Freight Costs - Shipments To Customer' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 32
+  },
+  {
+    "metric_name": "Allocated Inventory Adj/Obs",
+    "standard_name": "ALLOCATED_INVENTORY_ADJ_OBS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Surplus and Obsolete Inventory', 'Inventory Actualization', 'Inventory Adjustment')) and (UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 33
+  },
+  {
+    "metric_name": "Allocated Scrap",
+    "standard_name": "ALLOCATED_SCRAP",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'Scrap Proceeds') and (UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 34
+  },
+  {
+    "metric_name": "Allocated R&D",
+    "standard_name": "ALLOCATED_RD",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 35
+  },
+  {
+    "metric_name": "Allocated R&D 0 Platform Direct",
+    "standard_name": "ALLOCATED_RD_PLATFORM_DIRECT",
+    "operation": "TBD",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 36
+  },
+  {
+    "metric_name": "Allocated Other NCOS",
+    "standard_name": "ALLOCATED_OTHER_NCOS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC in ('Cash Discounts On Purchases', 'Cost of Sales \\u2013 (Gain) Loss on Foreign Exchange', 'Cost of Goods Sold-FX-non-Hedging', 'Miscellaneous Charges and Credits - COS', 'CARO Expense - COS', 'Amortization of Software for Sale', 'Royalty Income', 'Royalty Payments', 'Depreciation Expense Distribution')) and (UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 37
+  },
+  {
+    "metric_name": "Allocated Non0Standard COS",
+    "standard_name": "ALLOCATED_NON_STANDARD_COS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "ALLOCATED_SPENDING",
+        "ALLOCATED_OH_ABSORPTION",
+        "ALLOCATED_PFIC",
+        "ALLOCATED_MATERIAL_VARIANCE",
+        "ALLOCATED_DISTRIBUTION",
+        "ALLOCATED_FREIGHT",
+        "ALLOCATED_INVENTORY_ADJ_OBS",
+        "ALLOCATED_SCRAP",
+        "ALLOCATED_RD",
+        "ALLOCATED_RD_PLATFORM_DIRECT",
+        "ALLOCATED_OTHER_NCOS"
+      ]
+    },
+    "UNIQUE_ID": 38
+  },
+  {
+    "metric_name": "COS Bonus (bonus accounts)",
+    "standard_name": "COS_BONUS_BONUS_ACCOUNTS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Bonus COS')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 39
+  },
+  {
+    "metric_name": "Total Non0Standard COS",
+    "standard_name": "TOTAL_NON_STANDARD_COS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_SPENDING",
+        "SOURCE_FACTORY_OH_ABSORPTION",
+        "SOURCE_FACTORY_PFIC",
+        "SOURCE_FACTORY_MATERIAL_VARIANCE",
+        "SOURCE_FACTORY_DISTRIBUTION",
+        "SOURCE_FACTORY_FREIGHT",
+        "SOURCE_FACTORY_INVENTORY_ADJ_OBS",
+        "SOURCE_FACTORY_SCRAP",
+        "SOURCE_FACTORY_RD",
+        "SOURCE_FACTORY_OTHER_NCOS",
+        "ALLOCATED_SPENDING",
+        "ALLOCATED_OH_ABSORPTION",
+        "ALLOCATED_PFIC",
+        "ALLOCATED_MATERIAL_VARIANCE",
+        "ALLOCATED_DISTRIBUTION",
+        "ALLOCATED_FREIGHT",
+        "ALLOCATED_INVENTORY_ADJ_OBS",
+        "ALLOCATED_SCRAP",
+        "ALLOCATED_RD",
+        "ALLOCATED_RD_PLATFORM_DIRECT",
+        "ALLOCATED_OTHER_NCOS",
+        "COS_BONUS_BONUS_ACCOUNTS"
+      ]
+    },
+    "UNIQUE_ID": 40
+  },
+  {
+    "metric_name": "Commissions",
+    "standard_name": "COMMISSIONS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Commissions')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 41
+  },
+  {
+    "metric_name": "SA&G Bonus (bonus accounts)",
+    "standard_name": "SAG_BONUS_BONUS_ACCOUNTS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Bonus SAG')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 42
+  },
+  {
+    "metric_name": "Factory SA&G (excluding commissions & bonus)",
+    "standard_name": "FACTORY_SAG_EXCLUDING_COMMISSIONS_BONUS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory') and (ROLLUP_L4 in ('Other SAG', 'SAG Expenses'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 43
+  },
+  {
+    "metric_name": "Allocated SA&G (excluding commissions & bonus)",
+    "standard_name": "ALLOCATED_SAG_EXCLUDING_COMMISSIONS_BONUS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory') and (ROLLUP_L4 in ('Other SAG', 'SAG Expenses'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 44
+  },
+  {
+    "metric_name": "Total SA&G",
+    "standard_name": "TOTAL_SAG",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "COMMISSIONS",
+        "SAG_BONUS_BONUS_ACCOUNTS",
+        "FACTORY_SAG_EXCLUDING_COMMISSIONS_BONUS",
+        "ALLOCATED_SAG_EXCLUDING_COMMISSIONS_BONUS"
+      ]
+    },
+    "UNIQUE_ID": 45
+  },
+  {
+    "metric_name": "Comp to Credit",
+    "standard_name": "COMP_TO_CREDIT",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Comp to Credit')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 46
+  },
+  {
+    "metric_name": "Recurring Revenue (Income) / Expense",
+    "standard_name": "RECURRING_REVENUE_INCOME_EXPENSE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ACCOUNT_DESC == 'License Income - Recurring Revenue - External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 47
+  },
+  {
+    "metric_name": "Misc Expense / (Income)",
+    "standard_name": "MISC_EXPENSE_INCOME",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 in ('Bad Debt Expense', 'Misc Income', 'Other Income') and ACCOUNT_DESC != 'License Income - Recurring Revenue - External')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 48
+  },
+  {
+    "metric_name": "Operating Profit",
+    "standard_name": "OPERATING_PROFIT",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "COMPLETE_GOODS",
+        "SERVICE_PARTS",
+        "ISG",
+        "FREIGHT_SALES_MDF",
+        "RECURRING_REVENUE",
+        "DISCOUNTS",
+        "WARRANTY",
+        "PIP",
+        "DIRECT_MATERIAL",
+        "DIRECT_OVERHEADPERIOD_OVERHEAD",
+        "PARTS_STANDARD_COST_OF_SALES",
+        "OTHER_STD_COS_JDISG_LEASE_REVERSAL_ETC",
+        "SOURCE_FACTORY_SPENDING",
+        "SOURCE_FACTORY_OH_ABSORPTION",
+        "SOURCE_FACTORY_PFIC",
+        "SOURCE_FACTORY_MATERIAL_VARIANCE",
+        "SOURCE_FACTORY_DISTRIBUTION",
+        "SOURCE_FACTORY_FREIGHT",
+        "SOURCE_FACTORY_INVENTORY_ADJ_OBS",
+        "SOURCE_FACTORY_SCRAP",
+        "SOURCE_FACTORY_RD",
+        "SOURCE_FACTORY_OTHER_NCOS",
+        "ALLOCATED_SPENDING",
+        "ALLOCATED_OH_ABSORPTION",
+        "ALLOCATED_PFIC",
+        "ALLOCATED_MATERIAL_VARIANCE",
+        "ALLOCATED_DISTRIBUTION",
+        "ALLOCATED_FREIGHT",
+        "ALLOCATED_INVENTORY_ADJ_OBS",
+        "ALLOCATED_SCRAP",
+        "ALLOCATED_RD",
+        "ALLOCATED_RD_PLATFORM_DIRECT",
+        "ALLOCATED_OTHER_NCOS",
+        "COS_BONUS_BONUS_ACCOUNTS",
+        "COMMISSIONS",
+        "SAG_BONUS_BONUS_ACCOUNTS",
+        "FACTORY_SAG_EXCLUDING_COMMISSIONS_BONUS",
+        "ALLOCATED_SAG_EXCLUDING_COMMISSIONS_BONUS",
+        "COMP_TO_CREDIT",
+        "RECURRING_REVENUE_INCOME_EXPENSE",
+        "MISC_EXPENSE_INCOME"
+      ]
+    },
+    "UNIQUE_ID": 49
+  },
+  {
+    "metric_name": "Source Factory Trade Receivables",
+    "standard_name": "SOURCE_FACTORY_TRADE_RECEIVABLES",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Allowance for Credit Losses-Trade', 'Accounts Receivable - Dealer', 'Accounts Receivable-Trade-Other', 'Accounts Receivable - Dealer - Sold to Fin Services', 'Accounts Receivable-Trade-Sold to Fin Services', 'Accounts Receivable - Unconsolidated Affiliates'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 50
+  },
+  {
+    "metric_name": "Source Factory All Other Receivables",
+    "standard_name": "SOURCE_FACTORY_ALL_OTHER_RECEIVABLES",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L1 == '[2] Total Assets' and ROLLUP_L4 == 'Receivables' and UNIT_DESC == 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Other Non-Trade Receivables', 'Taxes Receivable  - Other'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 51
+  },
+  {
+    "metric_name": "Source Factory Receivables",
+    "standard_name": "SOURCE_FACTORY_RECEIVABLES",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_ALL_OTHER_RECEIVABLES",
+        "SOURCE_FACTORY_TRADE_RECEIVABLES"
+      ]
+    },
+    "UNIQUE_ID": 52
+  },
+  {
+    "metric_name": "Source Factory Raw Inventory",
+    "standard_name": "SOURCE_FACTORY_RAW_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Raw Inventory' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 53
+  },
+  {
+    "metric_name": "Source Factory WIP Inventory",
+    "standard_name": "SOURCE_FACTORY_WIP_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'WIP Inventory' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 54
+  },
+  {
+    "metric_name": "Source Factory Finished Goods Inventory",
+    "standard_name": "SOURCE_FACTORY_FINISHED_GOODS_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'CG Inventory' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 55
+  },
+  {
+    "metric_name": "Source Factory Branch Parts Inventory",
+    "standard_name": "SOURCE_FACTORY_BRANCH_PARTS_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 in ('Parts Inventory') and ACCOUNT_DESC in ('Parts Inventory - Branch & PDC') and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 56
+  },
+  {
+    "metric_name": "Source Factory Branch CG Inventory",
+    "standard_name": "SOURCE_FACTORY_BRANCH_CG_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 in ('CG Inventory') and ACCOUNT_DESC in ('Parts Inventory - Branch & PDC') and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 57
+  },
+  {
+    "metric_name": "Source Factory Inventory Reserve",
+    "standard_name": "SOURCE_FACTORY_INVENTORY_RESERVE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory' and ACCOUNT_DESC == 'Reserve For Inventory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 58
+  },
+  {
+    "metric_name": "Source Factory Inventory 0 Other",
+    "standard_name": "SOURCE_FACTORY_INVENTORY_OTHER",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory' and ACCOUNT_DESC in ('Reserve For Obsolete Inventory', 'Parts Inventory', 'Special Job Order Settlement'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 59
+  },
+  {
+    "metric_name": "Source Factory Inventory @ Standard",
+    "standard_name": "SOURCE_FACTORY_INVENTORY_STANDARD",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_BRANCH_CG_INVENTORY",
+        "SOURCE_FACTORY_BRANCH_PARTS_INVENTORY",
+        "SOURCE_FACTORY_FINISHED_GOODS_INVENTORY",
+        "SOURCE_FACTORY_INVENTORY_OTHER",
+        "SOURCE_FACTORY_INVENTORY_RESERVE",
+        "SOURCE_FACTORY_RAW_INVENTORY",
+        "SOURCE_FACTORY_WIP_INVENTORY"
+      ]
+    },
+    "UNIQUE_ID": 60
+  },
+  {
+    "metric_name": "Source Factory PP&E",
+    "standard_name": "SOURCE_FACTORY_PPE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L2 == '[8] PPE' and UNIT_DESC == 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 61
+  },
+  {
+    "metric_name": "Source Factory 0 Right of Use Assets",
+    "standard_name": "SOURCE_FACTORY_RIGHT_OF_USE_ASSETS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory' and ACCOUNT_DESC in ('Accumulated Amortization \\u2013 Right of Use Asset \\u2013 Operating L.', 'Right of Use Asset \\u2013 Operating Lease'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 62
+  },
+  {
+    "metric_name": "Source Factory 0 Other Assets",
+    "standard_name": "SOURCE_FACTORY_OTHER_ASSETS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC == 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Prepaid Insurance', 'Employee Travel Advances', 'Deferred Charges - Miscellaneous', 'Software - Internal Use', 'Accumulated Amortization - Software - Internal Use', 'Derv Oth Asst-FX Contrct Not Designat', 'Other Assets - Miscellaneous'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 63
+  },
+  {
+    "metric_name": "Source Factory Average Assets",
+    "standard_name": "SOURCE_FACTORY_AVERAGE_ASSETS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_TRADE_RECEIVABLES",
+        "SOURCE_FACTORY_ALL_OTHER_RECEIVABLES",
+        "SOURCE_FACTORY_BRANCH_CG_INVENTORY",
+        "SOURCE_FACTORY_BRANCH_PARTS_INVENTORY",
+        "SOURCE_FACTORY_FINISHED_GOODS_INVENTORY",
+        "SOURCE_FACTORY_INVENTORY_OTHER",
+        "SOURCE_FACTORY_INVENTORY_RESERVE",
+        "SOURCE_FACTORY_RAW_INVENTORY",
+        "SOURCE_FACTORY_WIP_INVENTORY",
+        "SOURCE_FACTORY_PPE",
+        "SOURCE_FACTORY_RIGHT_OF_USE_ASSETS",
+        "SOURCE_FACTORY_OTHER_ASSETS"
+      ]
+    },
+    "UNIQUE_ID": 64
+  },
+  {
+    "metric_name": "Allocated Trade Receivables",
+    "standard_name": "ALLOCATED_TRADE_RECEIVABLES",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Allowance for Credit Losses-Trade', 'Accounts Receivable - Dealer', 'Accounts Receivable-Trade-Other', 'Accounts Receivable - Dealer - Sold to Fin Services', 'Accounts Receivable-Trade-Sold to Fin Services', 'Accounts Receivable - Unconsolidated Affiliates'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 65
+  },
+  {
+    "metric_name": "Allocated All Other Receivables",
+    "standard_name": "ALLOCATED_ALL_OTHER_RECEIVABLES",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L1 == '[2] Total Assets' and ROLLUP_L4 == 'Receivables' and UNIT_DESC != 'Brazil - Horizontina Factory') and (ACCOUNT_DESC in ('Other Non-Trade Receivables', 'Taxes Receivable  - Other', 'Notes Receivable - Dealer', 'Notes Receivable - Miscellaneous', 'Notes Receivable - Floor Plan'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 66
+  },
+  {
+    "metric_name": "Allocated Receivables",
+    "standard_name": "ALLOCATED_RECEIVABLES",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "ALLOCATED_TRADE_RECEIVABLES",
+        "ALLOCATED_ALL_OTHER_RECEIVABLES"
+      ]
+    },
+    "UNIQUE_ID": 67
+  },
+  {
+    "metric_name": "Allocated Raw Inventory",
+    "standard_name": "ALLOCATED_RAW_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'Raw Inventory' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 68
+  },
+  {
+    "metric_name": "Allocated WIP Inventory",
+    "standard_name": "ALLOCATED_WIP_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'WIP Inventory' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 69
+  },
+  {
+    "metric_name": "Allocated Finished Goods Inventory",
+    "standard_name": "ALLOCATED_FINISHED_GOODS_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'CG Inventory' and ACCOUNT_DESC == 'Complete Goods Inventory' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 70
+  },
+  {
+    "metric_name": "Allocated Branch Parts Inventory",
+    "standard_name": "ALLOCATED_BRANCH_PARTS_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 in ('Parts Inventory') and ACCOUNT_DESC in ('Parts Inventory - Branch & PDC') and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 71
+  },
+  {
+    "metric_name": "Allocated Branch CG Inventory",
+    "standard_name": "ALLOCATED_BRANCH_CG_INVENTORY",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L4 == 'CG Inventory' and ACCOUNT_DESC == 'Complete Goods Inventory - Branch & PDC' and  UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 72
+  },
+  {
+    "metric_name": "Allocated Inventory Reserve",
+    "standard_name": "ALLOCATED_INVENTORY_RESERVE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory' and ACCOUNT_DESC == 'Reserve For Inventory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 73
+  },
+  {
+    "metric_name": "Allocated Inventory 0 Other",
+    "standard_name": "ALLOCATED_INVENTORY_OTHER",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory' and ACCOUNT_DESC in ('Reserve For Obsolete Inventory', 'Parts Inventory', 'Special Job Order Settlement'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 74
+  },
+  {
+    "metric_name": "Allocated Inventory @ Standard",
+    "standard_name": "ALLOCATED_INVENTORY_STANDARD",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "ALLOCATED_RAW_INVENTORY",
+        "ALLOCATED_WIP_INVENTORY",
+        "ALLOCATED_FINISHED_GOODS_INVENTORY",
+        "ALLOCATED_BRANCH_PARTS_INVENTORY",
+        "ALLOCATED_BRANCH_CG_INVENTORY",
+        "ALLOCATED_INVENTORY_RESERVE",
+        "ALLOCATED_INVENTORY_OTHER"
+      ]
+    },
+    "UNIQUE_ID": 75
+  },
+  {
+    "metric_name": "Allocated PP&E",
+    "standard_name": "ALLOCATED_PPE",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(ROLLUP_L2 == '[8] PPE' and UNIT_DESC != 'Brazil - Horizontina Factory')",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 76
+  },
+  {
+    "metric_name": "Allocated 0 Right of Use Assets",
+    "standard_name": "ALLOCATED_RIGHT_OF_USE_ASSETS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory' and ACCOUNT_DESC in ('Accumulated Amortization \\u2013 Right of Use Asset \\u2013 Operating L.', 'Right of Use Asset \\u2013 Operating Lease'))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 77
+  },
+  {
+    "metric_name": "Allocated 0 Other Assets",
+    "standard_name": "ALLOCATED_OTHER_ASSETS",
+    "operation": "filter_and_sum",
+    "params": {
+      "query_desc": "(UNIT_DESC != 'Brazil - Horizontina Factory' and (ROLLUP_L4 == 'Other Assets' and ACCOUNT_DESC not in ('Right of Use Asset \\u2013 Operating Lease', 'Accumulated Amortization \\u2013 Right of Use Asset \\u2013 Operating L.')))",
+      "values_to_sum": null
+    },
+    "UNIQUE_ID": 78
+  },
+  {
+    "metric_name": "Allocated Average Assets",
+    "standard_name": "ALLOCATED_AVERAGE_ASSETS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "ALLOCATED_TRADE_RECEIVABLES",
+        "ALLOCATED_ALL_OTHER_RECEIVABLES",
+        "ALLOCATED_RAW_INVENTORY",
+        "ALLOCATED_WIP_INVENTORY",
+        "ALLOCATED_FINISHED_GOODS_INVENTORY",
+        "ALLOCATED_BRANCH_PARTS_INVENTORY",
+        "ALLOCATED_BRANCH_CG_INVENTORY",
+        "ALLOCATED_INVENTORY_RESERVE",
+        "ALLOCATED_INVENTORY_OTHER",
+        "ALLOCATED_PPE",
+        "ALLOCATED_RIGHT_OF_USE_ASSETS",
+        "ALLOCATED_OTHER_ASSETS"
+      ]
+    },
+    "UNIQUE_ID": 79
+  },
+  {
+    "metric_name": "Total Average Assets",
+    "standard_name": "TOTAL_AVERAGE_ASSETS",
+    "operation": "sum_values",
+    "params": {
+      "query_desc": null,
+      "values_to_sum": [
+        "SOURCE_FACTORY_TRADE_RECEIVABLES",
+        "SOURCE_FACTORY_ALL_OTHER_RECEIVABLES",
+        "SOURCE_FACTORY_BRANCH_CG_INVENTORY",
+        "SOURCE_FACTORY_BRANCH_PARTS_INVENTORY",
+        "SOURCE_FACTORY_FINISHED_GOODS_INVENTORY",
+        "SOURCE_FACTORY_INVENTORY_OTHER",
+        "SOURCE_FACTORY_INVENTORY_RESERVE",
+        "SOURCE_FACTORY_RAW_INVENTORY",
+        "SOURCE_FACTORY_WIP_INVENTORY",
+        "SOURCE_FACTORY_PPE",
+        "SOURCE_FACTORY_RIGHT_OF_USE_ASSETS",
+        "SOURCE_FACTORY_OTHER_ASSETS",
+        "ALLOCATED_TRADE_RECEIVABLES",
+        "ALLOCATED_ALL_OTHER_RECEIVABLES",
+        "ALLOCATED_RAW_INVENTORY",
+        "ALLOCATED_WIP_INVENTORY",
+        "ALLOCATED_FINISHED_GOODS_INVENTORY",
+        "ALLOCATED_BRANCH_PARTS_INVENTORY",
+        "ALLOCATED_BRANCH_CG_INVENTORY",
+        "ALLOCATED_INVENTORY_RESERVE",
+        "ALLOCATED_INVENTORY_OTHER",
+        "ALLOCATED_PPE",
+        "ALLOCATED_RIGHT_OF_USE_ASSETS",
+        "ALLOCATED_OTHER_ASSETS"
+      ]
+    },
+    "UNIQUE_ID": 80
+  }
+]
